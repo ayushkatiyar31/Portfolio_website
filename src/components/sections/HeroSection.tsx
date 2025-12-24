@@ -218,30 +218,6 @@ const HeroSection = () => {
                 </div>
               </div>
 
-              {/* Floating badges */}
-              <motion.div
-                className="absolute -right-4 top-8 px-3 py-2 rounded-lg glass-card border border-primary/30"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <span className="text-xs font-mono text-primary">MERN Stack</span>
-              </motion.div>
-
-              <motion.div
-                className="absolute -left-4 bottom-12 px-3 py-2 rounded-lg glass-card border border-accent/30"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              >
-                <span className="text-xs font-mono text-accent">React.js</span>
-              </motion.div>
-
-              <motion.div
-                className="absolute right-8 -bottom-2 px-3 py-2 rounded-lg glass-card border border-neon-cyan/30"
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              >
-                <span className="text-xs font-mono text-neon-cyan">Node.js</span>
-              </motion.div>
             </div>
           </motion.div>
         </div>

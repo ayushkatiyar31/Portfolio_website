@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Phone, Download, Code, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import BubbleBackground from "../effects/BubbleBackground";
+import SolarSystem from "../three/SolarSystem";
 import profileImage from "@/assets/profile.jpeg";
 
 import { useState, useEffect } from "react";
@@ -79,8 +79,8 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Bubble Background */}
-      <BubbleBackground />
+      {/* Solar System Background */}
+      <SolarSystem />
       
       {/* Gradient overlay for readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background z-[1]" />

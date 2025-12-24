@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NavLink, useLocation } from "react-router-dom";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X, Sparkles, Home, User, Wrench, FolderKanban, Briefcase, Award, Mail } from "lucide-react";
 import ThemeToggle from "../ui/ThemeToggle";
 
 const navLinks = [
-  { name: "Home", path: "/" },
-  { name: "About", path: "/about" },
-  { name: "Skills", path: "/skills" },
-  { name: "Projects", path: "/projects" },
-  { name: "Experience", path: "/experience" },
-  { name: "Certificates", path: "/certificates" },
-  { name: "Contact", path: "/contact" },
+  { name: "Home", path: "/", icon: Home },
+  { name: "About", path: "/about", icon: User },
+  { name: "Skills", path: "/skills", icon: Wrench },
+  { name: "Projects", path: "/projects", icon: FolderKanban },
+  { name: "Experience", path: "/experience", icon: Briefcase },
+  { name: "Certificates", path: "/certificates", icon: Award },
+  { name: "Contact", path: "/contact", icon: Mail },
 ];
 
 const Navbar = () => {
@@ -70,19 +70,20 @@ const Navbar = () => {
         </NavLink>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-1 p-1.5 rounded-2xl bg-secondary/80 border border-border/50">
-          {navLinks.map((link, index) => (
+        <div className="hidden lg:flex items-center gap-1 p-1.5 rounded-2xl bg-card border border-border shadow-md">
+          {navLinks.map((link) => (
             <NavLink
               key={link.path}
               to={link.path}
               className={({ isActive }) =>
-                `relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
+                `flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
                   isActive
                     ? "text-primary-foreground bg-primary shadow-glow"
                     : "text-foreground hover:text-primary hover:bg-secondary"
                 }`
               }
             >
+              <link.icon className="w-4 h-4" />
               {link.name}
             </NavLink>
           ))}
@@ -150,10 +151,11 @@ const Navbar = () => {
                       `flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium transition-all ${
                         isActive
                           ? "bg-primary text-primary-foreground shadow-glow"
-                          : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                          : "text-foreground hover:text-primary hover:bg-secondary"
                       }`
                     }
                   >
+                    <link.icon className="w-5 h-5" />
                     {link.name}
                   </NavLink>
                 </motion.li>

@@ -8,6 +8,7 @@ import { AnimatePresence } from "framer-motion";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import ScrollToTop from "./components/layout/ScrollToTop";
+import CustomCursor from "./components/effects/CustomCursor";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import SkillsPage from "./pages/SkillsPage";
@@ -45,7 +46,8 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <div className="min-h-screen bg-background text-foreground flex flex-col">
+          <CustomCursor />
+          <div className="min-h-screen bg-background text-foreground flex flex-col cursor-none">
             <Navbar />
             <main className="flex-1">
               <AnimatedRoutes />

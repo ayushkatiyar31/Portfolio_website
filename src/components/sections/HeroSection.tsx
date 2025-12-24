@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Phone, Download, Code, Rocket } from "lucide-react";
 import { Link } from "react-router-dom";
 import BubbleBackground from "../effects/BubbleBackground";
+import profileImage from "@/assets/profile.jpeg";
 
 const letterVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -198,20 +199,11 @@ const HeroSection = () => {
 
               {/* Profile image container */}
               <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-background glass-card">
-                {/* Placeholder - User can replace with their image */}
-                <div className="w-full h-full bg-gradient-to-br from-primary/20 via-accent/10 to-secondary flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-20 h-20 mx-auto mb-3 rounded-full bg-primary/20 border-2 border-dashed border-primary/50 flex items-center justify-center">
-                      <span className="text-3xl">👨‍💻</span>
-                    </div>
-                    <p className="text-sm text-muted-foreground font-mono">
-                      Add your photo
-                    </p>
-                    <p className="text-xs text-muted-foreground/60">
-                      Replace in code
-                    </p>
-                  </div>
-                </div>
+                <img 
+                  src={profileImage} 
+                  alt="Ayush Katiyar" 
+                  className="w-full h-full object-cover object-top"
+                />
               </div>
 
             </div>

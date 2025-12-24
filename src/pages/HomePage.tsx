@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import PageTransition from "@/components/layout/PageTransition";
 import HeroSection from "@/components/sections/HeroSection";
+import BubbleBackground from "@/components/effects/BubbleBackground";
 
 const HomePage = () => {
   return (
@@ -16,6 +17,7 @@ const HomePage = () => {
         <meta property="og:type" content="website" />
       </Helmet>
 
+      <BubbleBackground />
       <HeroSection />
     </PageTransition>
   );

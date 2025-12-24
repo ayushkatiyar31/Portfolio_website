@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import PageTransition from "@/components/layout/PageTransition";
+import BubbleBackground from "@/components/effects/BubbleBackground";
 import { MessageSquare, Mail, MapPin, Phone, Send, Loader2, CheckCircle, Github, Linkedin } from "lucide-react";
 
 const ContactPage = () => {
@@ -56,7 +57,6 @@ const ContactPage = () => {
     
     setIsSubmitting(true);
 
-    // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     setIsSubmitting(false);
@@ -65,7 +65,7 @@ const ContactPage = () => {
 
     toast({
       title: "Message sent successfully!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
+      description: "Thank you for reaching out. I will get back to you soon.",
     });
 
     setTimeout(() => setIsSubmitted(false), 3000);
@@ -91,6 +91,8 @@ const ContactPage = () => {
         <meta name="description" content="Get in touch with Ayush Katiyar. Open to internships, full-time roles, and freelance opportunities." />
       </Helmet>
 
+      <BubbleBackground />
+
       <section className="py-32 relative overflow-hidden">
         <div className="absolute inset-0 cyber-grid opacity-30" />
         <div className="absolute left-1/2 top-1/4 w-[600px] h-[600px] bg-neon-blue/5 rounded-full blur-[120px] -translate-x-1/2" />
@@ -113,7 +115,7 @@ const ContactPage = () => {
                 GET IN <span className="gradient-text">TOUCH</span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Have a project in mind or want to discuss opportunities? I'd love to hear from you.
+                Have a project in mind or want to discuss opportunities? I would love to hear from you.
               </p>
             </motion.div>
 
@@ -270,7 +272,7 @@ const ContactPage = () => {
                       className={`w-full px-4 py-3 rounded-lg bg-secondary border ${
                         errors.subject ? "border-destructive" : "border-border"
                       } focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors`}
-                      placeholder="What's this about?"
+                      placeholder="What is this about?"
                     />
                     {errors.subject && (
                       <p className="text-xs text-destructive mt-1">{errors.subject}</p>

@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import PageTransition from "@/components/layout/PageTransition";
+import BubbleBackground from "@/components/effects/BubbleBackground";
 import { GraduationCap, Target, Code2, Users, MapPin, Mail, Phone } from "lucide-react";
 
 const timeline = [
@@ -31,6 +32,8 @@ const AboutPage = () => {
         <title>About | Ayush Katiyar</title>
         <meta name="description" content="Learn about Ayush Katiyar - B.Tech CSE student at KIET, passionate Full-Stack Developer with experience in MERN stack development." />
       </Helmet>
+
+      <BubbleBackground />
 
       <section className="py-32 relative overflow-hidden">
         <div className="absolute inset-0 cyber-grid opacity-30" />
@@ -73,7 +76,7 @@ const AboutPage = () => {
               </p>
               <p className="text-muted-foreground leading-relaxed mb-6">
                 My journey in tech started with a curiosity for how websites work, which quickly evolved into a passion for creating 
-                scalable, user-centric applications. I've led frontend development at the DSDL Club, where I mentored 30+ students 
+                scalable, user-centric applications. I have led frontend development at the DSDL Club, where I mentored 30+ students 
                 and improved website performance by 25%.
               </p>
               
@@ -136,7 +139,7 @@ const AboutPage = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <h2 className="text-2xl font-bold font-display mb-8 text-center">
+              <h2 className="text-2xl font-bold font-display text-center mb-8">
                 EDUCATION & <span className="gradient-text">EXPERIENCE</span>
               </h2>
               

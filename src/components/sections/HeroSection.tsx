@@ -1,47 +1,39 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Phone, Download, Code, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 import BubbleBackground from "../effects/BubbleBackground";
 import profileImage from "@/assets/profile.jpeg";
 
-const TypewriterText = ({ text, className }: { text: string; className?: string }) => {
-  const [displayText, setDisplayText] = useState("");
-  const [showCursor, setShowCursor] = useState(true);
+const letterVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.04,
+      duration: 0.4,
+      ease: [0.4, 0, 0.2, 1] as const,
+    },
+  }),
+};
 
-  useEffect(() => {
-    let currentIndex = 0;
-    const typingInterval = setInterval(() => {
-      if (currentIndex <= text.length) {
-        setDisplayText(text.slice(0, currentIndex));
-        currentIndex++;
-      } else {
-        clearInterval(typingInterval);
-        // Keep cursor blinking after typing is done
-        setTimeout(() => setShowCursor(true), 500);
-      }
-    }, 100);
-
-    // Cursor blink effect
-    const cursorInterval = setInterval(() => {
-      setShowCursor((prev) => !prev);
-    }, 530);
-
-    return () => {
-      clearInterval(typingInterval);
-      clearInterval(cursorInterval);
-    };
-  }, [text]);
-
+const AnimatedText = ({ text, className }: { text: string; className?: string }) => {
   return (
-    <span className={className}>
-      {displayText}
-      <span 
-        className={`inline-block w-[3px] h-[0.9em] bg-primary ml-1 align-middle transition-opacity duration-100 ${
-          showCursor ? "opacity-100" : "opacity-0"
-        }`}
-      />
-    </span>
+    <motion.span className={className}>
+      {text.split("").map((char, i) => (
+        <motion.span
+          key={i}
+          custom={i}
+          variants={letterVariants}
+          initial="hidden"
+          animate="visible"
+          className="inline-block"
+          style={{ display: char === " " ? "inline" : "inline-block" }}
+        >
+          {char === " " ? "\u00A0" : char}
+        </motion.span>
+      ))}
+    </motion.span>
   );
 };
 
@@ -105,7 +97,7 @@ const HeroSection = () => {
               </motion.p>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight font-display">
                 <span className="gradient-text">
-                  <TypewriterText text="Ayush Katiyar" />
+                  <AnimatedText text="Ayush Katiyar" />
                 </span>
               </h1>
             </motion.div>

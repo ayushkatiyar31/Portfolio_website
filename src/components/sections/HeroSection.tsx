@@ -4,36 +4,61 @@ import { Link } from "react-router-dom";
 import BubbleBackground from "../effects/BubbleBackground";
 import profileImage from "@/assets/profile.jpeg";
 
-const letterVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.04,
-      duration: 0.4,
-      ease: [0.4, 0, 0.2, 1] as const,
-    },
-  }),
+import { useState, useEffect } from "react";
+
+const useTypewriter = (text: string, speed: number = 50, delay: number = 0) => {
+  const [displayedText, setDisplayedText] = useState("");
+  const [isComplete, setIsComplete] = useState(false);
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    let charIndex = 0;
+
+    const startTyping = () => {
+      timeout = setTimeout(() => {
+        if (charIndex < text.length) {
+          setDisplayedText(text.slice(0, charIndex + 1));
+          charIndex++;
+          startTyping();
+        } else {
+          setIsComplete(true);
+        }
+      }, speed);
+    };
+
+    const delayTimeout = setTimeout(startTyping, delay);
+
+    return () => {
+      clearTimeout(timeout);
+      clearTimeout(delayTimeout);
+    };
+  }, [text, speed, delay]);
+
+  return { displayedText, isComplete };
 };
 
-const AnimatedText = ({ text, className }: { text: string; className?: string }) => {
+const TypewriterText = ({ 
+  text, 
+  className, 
+  speed = 50, 
+  delay = 0,
+  showCursor = true 
+}: { 
+  text: string; 
+  className?: string; 
+  speed?: number; 
+  delay?: number;
+  showCursor?: boolean;
+}) => {
+  const { displayedText, isComplete } = useTypewriter(text, speed, delay);
+
   return (
-    <motion.span className={className}>
-      {text.split("").map((char, i) => (
-        <motion.span
-          key={i}
-          custom={i}
-          variants={letterVariants}
-          initial="hidden"
-          animate="visible"
-          className="inline-block"
-          style={{ display: char === " " ? "inline" : "inline-block" }}
-        >
-          {char === " " ? "\u00A0" : char}
-        </motion.span>
-      ))}
-    </motion.span>
+    <span className={className}>
+      {displayedText}
+      {showCursor && (
+        <span className={`inline-block w-0.5 h-[1em] bg-primary ml-1 align-middle ${isComplete ? 'animate-pulse' : ''}`} />
+      )}
+    </span>
   );
 };
 
@@ -87,17 +112,9 @@ const HeroSection = () => {
               animate={{ opacity: 1 }}
               className="mb-6"
             >
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="text-lg text-muted-foreground mb-2 font-medium"
-              >
-                Hello, I'm
-              </motion.p>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight font-display">
                 <span className="gradient-text">
-                  <AnimatedText text="Ayush Katiyar" />
+                  <TypewriterText text="Hi, I'm Ayush Katiyar" speed={60} showCursor={false} />
                 </span>
               </h1>
             </motion.div>
@@ -106,7 +123,7 @@ const HeroSection = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
+              transition={{ duration: 0.5, delay: 1.5 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary/80 mb-6"
             >
               <Code className="w-4 h-4 text-primary" />
@@ -115,18 +132,19 @@ const HeroSection = () => {
               </span>
             </motion.div>
 
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
+            {/* Description with Typewriter */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: 1.8 }}
               className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed"
             >
-              B.Tech CSE Student at <span className="text-foreground font-medium">KIET, Ghaziabad</span>. 
-              I build scalable web applications with the{" "}
-              <span className="text-foreground font-medium">MERN stack</span>, 
-              focusing on clean code and exceptional user experiences.
-            </motion.p>
+              <TypewriterText 
+                text="B.Tech CSE Student at KIET, Ghaziabad. I build scalable web applications with the MERN stack, focusing on clean code and exceptional user experiences." 
+                speed={30} 
+                delay={2000}
+              />
+            </motion.div>
 
             {/* CTA Buttons */}
             <motion.div

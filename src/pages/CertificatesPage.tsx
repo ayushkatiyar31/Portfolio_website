@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import PageTransition from "@/components/layout/PageTransition";
 import SolarSystem from "@/components/three/SolarSystem";
+import BubbleBackground from "@/components/effects/BubbleBackground";
 import { Award, ExternalLink, Calendar, CheckCircle } from "lucide-react";
 
 const certificates = [
@@ -44,6 +45,7 @@ const CertificatesPage = () => {
         <meta name="description" content="Professional certifications of Ayush Katiyar - Full-Stack Web Development, OOP Design, and HTML/CSS from LinkedIn Learning." />
       </Helmet>
 
+      <BubbleBackground />
       <SolarSystem />
 
       <section className="py-32 relative overflow-hidden">

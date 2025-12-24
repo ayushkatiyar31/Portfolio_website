@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import PageTransition from "@/components/layout/PageTransition";
 import SolarSystem from "@/components/three/SolarSystem";
+import BubbleBackground from "@/components/effects/BubbleBackground";
 import { Code, Server, Wrench, Layers } from "lucide-react";
 
 const skillCategories = [
@@ -53,6 +54,7 @@ const SkillsPage = () => {
         <meta name="description" content="Technical skills of Ayush Katiyar - Proficient in C++, JavaScript, React, Node.js, MongoDB, Express.js, and more." />
       </Helmet>
 
+      <BubbleBackground />
       <SolarSystem />
 
       <section className="py-32 relative overflow-hidden">

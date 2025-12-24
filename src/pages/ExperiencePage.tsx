@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import PageTransition from "@/components/layout/PageTransition";
 import SolarSystem from "@/components/three/SolarSystem";
+import BubbleBackground from "@/components/effects/BubbleBackground";
 import { Briefcase, Calendar, Users, Zap, TrendingUp, Code2 } from "lucide-react";
 
 const experiences = [
@@ -56,6 +57,7 @@ const ExperiencePage = () => {
         <meta name="description" content="Professional experience of Ayush Katiyar - Frontend Developer at DSDL Club, mentoring students and building web applications." />
       </Helmet>
 
+      <BubbleBackground />
       <SolarSystem />
 
       <section className="py-32 relative overflow-hidden">

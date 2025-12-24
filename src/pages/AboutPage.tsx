@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import PageTransition from "@/components/layout/PageTransition";
+import BubbleBackground from "@/components/effects/BubbleBackground";
 import { GraduationCap, Target, Code2, Users, MapPin, Mail, Phone } from "lucide-react";
 
 const timeline = [
@@ -31,6 +32,8 @@ const AboutPage = () => {
         <title>About | Ayush Katiyar</title>
         <meta name="description" content="Learn about Ayush Katiyar - B.Tech CSE student at KIET, passionate Full-Stack Developer with experience in MERN stack development." />
       </Helmet>
+
+      <BubbleBackground />
 
       <section className="py-32 relative overflow-hidden">
         <div className="absolute inset-0 cyber-grid opacity-30" />

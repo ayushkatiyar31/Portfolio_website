@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import PageTransition from "@/components/layout/PageTransition";
+import BubbleBackground from "@/components/effects/BubbleBackground";
 import { Code, Server, Wrench, Layers } from "lucide-react";
 
 const skillCategories = [
@@ -51,6 +52,8 @@ const SkillsPage = () => {
         <title>Skills | Ayush Katiyar</title>
         <meta name="description" content="Technical skills of Ayush Katiyar - Proficient in C++, JavaScript, React, Node.js, MongoDB, Express.js, and more." />
       </Helmet>
+
+      <BubbleBackground />
 
       <section className="py-32 relative overflow-hidden">
         <div className="absolute inset-0 cyber-grid opacity-30" />

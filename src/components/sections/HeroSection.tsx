@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Phone, Download, Code, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import BubbleBackground from "../effects/BubbleBackground";
 import profileImage from "@/assets/profile.jpeg";
 
 import { useState, useEffect } from "react";
@@ -78,7 +79,8 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Gradient overlay for readability */}
+      {/* Bubble Background */}
+      <BubbleBackground />
       
       {/* Gradient overlay for readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background z-[1]" />
@@ -195,12 +197,11 @@ const HeroSection = () => {
               />
 
               {/* Profile image container */}
-              <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-background shadow-premium">
+              <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-background shadow-premium">
                 <img 
                   src={profileImage} 
                   alt="Ayush Katiyar" 
-                  className="w-full h-full object-cover scale-125"
-                  style={{ objectPosition: "center 40%" }}
+                  className="w-full h-full object-cover object-top"
                 />
                 {/* Subtle overlay for depth */}
                 <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />

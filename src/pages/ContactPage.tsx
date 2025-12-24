@@ -3,7 +3,6 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import PageTransition from "@/components/layout/PageTransition";
-import SolarSystem from "@/components/three/SolarSystem";
 import BubbleBackground from "@/components/effects/BubbleBackground";
 import { MessageSquare, Mail, MapPin, Phone, Send, Loader2, CheckCircle, Github, Linkedin } from "lucide-react";
 
@@ -93,7 +92,6 @@ const ContactPage = () => {
       </Helmet>
 
       <BubbleBackground />
-      <SolarSystem />
 
       <section className="py-32 relative overflow-hidden">
         <div className="absolute inset-0 cyber-grid opacity-30" />

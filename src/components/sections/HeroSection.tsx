@@ -195,11 +195,11 @@ const HeroSection = () => {
               />
 
               {/* Profile image container */}
-              <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-background shadow-premium">
+              <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-background shadow-premium">
                 <img 
                   src={profileImage} 
                   alt="Ayush Katiyar" 
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-top scale-125"
                 />
                 {/* Subtle overlay for depth */}
                 <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />

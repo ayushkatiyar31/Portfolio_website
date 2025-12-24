@@ -70,21 +70,21 @@ const Navbar = () => {
         </NavLink>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-1 p-1.5 rounded-2xl bg-card border border-border shadow-md">
+        <div className="hidden md:flex items-center gap-0.5 p-1 rounded-xl bg-card border border-border shadow-md">
           {navLinks.map((link) => (
             <NavLink
               key={link.path}
               to={link.path}
               className={({ isActive }) =>
-                `flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
+                `flex items-center gap-1.5 px-2.5 lg:px-3 py-1.5 rounded-lg text-xs lg:text-sm font-medium transition-all duration-300 ${
                   isActive
                     ? "text-primary-foreground bg-primary shadow-glow"
                     : "text-foreground hover:text-primary hover:bg-secondary"
                 }`
               }
             >
-              <link.icon className="w-4 h-4" />
-              {link.name}
+              <link.icon className="w-3.5 h-3.5 lg:w-4 lg:h-4" />
+              <span className="hidden lg:inline">{link.name}</span>
             </NavLink>
           ))}
         </div>
@@ -112,7 +112,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <motion.button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2.5 rounded-xl glass-card text-foreground"
+            className="md:hidden p-2.5 rounded-xl glass-card text-foreground"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             aria-label="Toggle menu"
@@ -135,7 +135,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden absolute top-full left-4 right-4 mt-2 glass-card rounded-2xl overflow-hidden border border-border/50"
+            className="md:hidden absolute top-full left-4 right-4 mt-2 glass-card rounded-2xl overflow-hidden border border-border/50"
           >
             <ul className="p-3 space-y-1">
               {navLinks.map((link, index) => (

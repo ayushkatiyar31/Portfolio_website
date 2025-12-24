@@ -187,30 +187,21 @@ const HeroSection = () => {
             className="order-1 lg:order-2 flex justify-center"
           >
             <div className="relative">
-              {/* Animated gradient ring */}
-              <motion.div
-                className="absolute -inset-4 rounded-full animate-spin-slow"
+              {/* Static gradient ring - no spinning animation */}
+              <div
+                className="absolute -inset-3 rounded-full"
                 style={{
                   background: "conic-gradient(from 0deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--premium-teal)), hsl(var(--primary)))",
-                  padding: "3px",
+                  padding: "2px",
                 }}
               >
                 <div className="w-full h-full rounded-full bg-background" />
-              </motion.div>
+              </div>
               
-              {/* Glow effect */}
-              <motion.div
-                className="absolute inset-0 rounded-full blur-2xl"
-                style={{ background: "var(--gradient-primary)", opacity: 0.2 }}
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.15, 0.25, 0.15],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
+              {/* Static glow effect */}
+              <div
+                className="absolute inset-0 rounded-full blur-2xl opacity-20"
+                style={{ background: "var(--gradient-primary)" }}
               />
 
               {/* Profile image container */}
@@ -224,41 +215,29 @@ const HeroSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
               </div>
 
-              {/* Floating badges */}
-              <motion.div
-                className="absolute -right-4 top-1/4 px-3 py-2 rounded-lg glass-card text-xs font-medium"
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              {/* Static floating badges - CSS animation instead of framer-motion */}
+              <div
+                className="absolute -right-4 top-1/4 px-3 py-2 rounded-lg glass-card text-xs font-medium animate-float"
               >
                 <span className="text-primary">React</span>
-              </motion.div>
-              <motion.div
-                className="absolute -left-4 bottom-1/4 px-3 py-2 rounded-lg glass-card text-xs font-medium"
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              </div>
+              <div
+                className="absolute -left-4 bottom-1/4 px-3 py-2 rounded-lg glass-card text-xs font-medium animate-float"
+                style={{ animationDelay: "1.5s" }}
               >
                 <span className="text-accent">Node.js</span>
-              </motion.div>
+              </div>
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2"
-        >
-          <motion.div className="w-1 h-2 rounded-full bg-primary" />
-        </motion.div>
-      </motion.div>
+      {/* Scroll indicator - CSS animation */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 opacity-60">
+        <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2">
+          <div className="w-1 h-2 rounded-full bg-primary animate-bounce" />
+        </div>
+      </div>
     </section>
   );
 };

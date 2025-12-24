@@ -1,117 +1,47 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState, useCallback } from "react";
 
 const CustomCursor = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
-  const [isClicking, setIsClicking] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (target.tagName === 'A' || target.tagName === 'BUTTON' || 
-          target.closest('a') || target.closest('button') ||
-          target.classList.contains('clickable')) {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
-      }
-    };
-
-    const handleMouseDown = () => setIsClicking(true);
-    const handleMouseUp = () => setIsClicking(false);
-
-    window.addEventListener("mousemove", updateMousePosition);
-    window.addEventListener("mouseover", handleMouseOver);
-    window.addEventListener("mousedown", handleMouseDown);
-    window.addEventListener("mouseup", handleMouseUp);
-
-    return () => {
-      window.removeEventListener("mousemove", updateMousePosition);
-      window.removeEventListener("mouseover", handleMouseOver);
-      window.removeEventListener("mousedown", handleMouseDown);
-      window.removeEventListener("mouseup", handleMouseUp);
-    };
+  const updatePosition = useCallback((e: MouseEvent) => {
+    setPosition({ x: e.clientX, y: e.clientY });
   }, []);
 
-  // Hide on mobile/touch devices
-  if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
-    return null;
-  }
+  useEffect(() => {
+    // Check for touch device
+    if (window.matchMedia('(pointer: coarse)').matches) {
+      return;
+    }
+
+    setIsVisible(true);
+    window.addEventListener("mousemove", updatePosition, { passive: true });
+    
+    return () => {
+      window.removeEventListener("mousemove", updatePosition);
+    };
+  }, [updatePosition]);
+
+  if (!isVisible) return null;
 
   return (
     <>
-      {/* Main cursor ring */}
-      <motion.div
-        className="fixed pointer-events-none z-[9999] rounded-full border border-primary/50"
+      {/* Simple cursor ring - using CSS transform for performance */}
+      <div
+        className="fixed pointer-events-none z-[9999] w-8 h-8 rounded-full border border-primary/40 transition-transform duration-75"
         style={{
-          left: mousePosition.x,
-          top: mousePosition.y,
-        }}
-        animate={{
-          x: "-50%",
-          y: "-50%",
-          width: isHovering ? 48 : isClicking ? 24 : 32,
-          height: isHovering ? 48 : isClicking ? 24 : 32,
-          borderColor: isHovering 
-            ? "hsl(var(--accent) / 0.6)" 
-            : "hsl(var(--primary) / 0.5)",
-          backgroundColor: isClicking 
-            ? "hsl(var(--primary) / 0.15)" 
-            : "transparent",
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 400,
-          damping: 25,
-          mass: 0.5,
+          left: position.x,
+          top: position.y,
+          transform: "translate(-50%, -50%)",
         }}
       />
-
       {/* Center dot */}
-      <motion.div
-        className="fixed pointer-events-none z-[9999] rounded-full"
+      <div
+        className="fixed pointer-events-none z-[9999] w-1.5 h-1.5 rounded-full bg-primary"
         style={{
-          left: mousePosition.x,
-          top: mousePosition.y,
-          background: "var(--gradient-primary)",
-        }}
-        animate={{
-          x: "-50%",
-          y: "-50%",
-          width: isHovering ? 6 : 4,
-          height: isHovering ? 6 : 4,
-          scale: isClicking ? 1.8 : 1,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 600,
-          damping: 30,
-        }}
-      />
-
-      {/* Subtle glow */}
-      <motion.div
-        className="fixed pointer-events-none z-[9997] rounded-full"
-        style={{
-          left: mousePosition.x,
-          top: mousePosition.y,
-          background: "radial-gradient(circle, hsl(var(--primary) / 0.08) 0%, transparent 70%)",
-        }}
-        animate={{
-          x: "-50%",
-          y: "-50%",
-          width: isHovering ? 80 : 60,
-          height: isHovering ? 80 : 60,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 250,
-          damping: 25,
+          left: position.x,
+          top: position.y,
+          transform: "translate(-50%, -50%)",
         }}
       />
     </>

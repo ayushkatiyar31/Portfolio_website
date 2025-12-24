@@ -2,7 +2,6 @@ import { Helmet } from "react-helmet-async";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import PageTransition from "@/components/layout/PageTransition";
-import SolarSystem from "@/components/three/SolarSystem";
 import BubbleBackground from "@/components/effects/BubbleBackground";
 import { Award, ExternalLink, Calendar, CheckCircle } from "lucide-react";
 
@@ -46,7 +45,6 @@ const CertificatesPage = () => {
       </Helmet>
 
       <BubbleBackground />
-      <SolarSystem />
 
       <section className="py-32 relative overflow-hidden">
         <div className="absolute inset-0 cyber-grid opacity-30" />

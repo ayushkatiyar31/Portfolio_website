@@ -169,7 +169,7 @@ const HeroSection = () => {
               <motion.div
                 className="absolute inset-0 rounded-full"
                 style={{
-                  background: "linear-gradient(135deg, hsl(200 100% 50% / 0.3), hsl(270 100% 65% / 0.3))",
+                  background: "linear-gradient(135deg, hsl(24 95% 60% / 0.25), hsl(340 85% 65% / 0.2))",
                   filter: "blur(40px)",
                 }}
                 animate={{
@@ -183,18 +183,18 @@ const HeroSection = () => {
                 }}
               />
               
-              {/* Rotating border */}
-              <motion.div
-                className="absolute -inset-4 rounded-full"
-                style={{
-                  background: "conic-gradient(from 0deg, hsl(200 100% 50%), hsl(270 100% 65%), hsl(320 100% 60%), hsl(200 100% 50%))",
-                  padding: "3px",
-                }}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-              >
-                <div className="w-full h-full rounded-full bg-background" />
-              </motion.div>
+            {/* Rotating border */}
+            <motion.div
+              className="absolute -inset-4 rounded-full"
+              style={{
+                background: "conic-gradient(from 0deg, hsl(24 95% 60%), hsl(340 85% 65%), hsl(38 100% 55%), hsl(24 95% 60%))",
+                padding: "3px",
+              }}
+              animate={{ rotate: 360 }}
+              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+            >
+              <div className="w-full h-full rounded-full bg-background" />
+            </motion.div>
 
               {/* Profile image container */}
               <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-background glass-card">

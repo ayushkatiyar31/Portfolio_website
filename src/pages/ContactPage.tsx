@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import PageTransition from "@/components/layout/PageTransition";
 import SolarSystem from "@/components/three/SolarSystem";
+import BubbleBackground from "@/components/effects/BubbleBackground";
 import { MessageSquare, Mail, MapPin, Phone, Send, Loader2, CheckCircle, Github, Linkedin } from "lucide-react";
 
 const ContactPage = () => {
@@ -91,6 +92,7 @@ const ContactPage = () => {
         <meta name="description" content="Get in touch with Ayush Katiyar. Open to internships, full-time roles, and freelance opportunities." />
       </Helmet>
 
+      <BubbleBackground />
       <SolarSystem />
 
       <section className="py-32 relative overflow-hidden">

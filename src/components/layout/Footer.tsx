@@ -57,7 +57,7 @@ const Footer = () => {
             <p>© {currentYear} Ayush Katiyar</p>
             <span className="hidden sm:inline">•</span>
             <p className="flex items-center gap-1.5">
-              Built with <Heart className="w-3.5 h-3.5 text-red-500 fill-current" /> React & Tailwind
+              Built with <Heart className="w-3.5 h-3.5 text-red-500 fill-current" />
             </p>
           </div>
         </div>

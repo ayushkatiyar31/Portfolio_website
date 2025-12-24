@@ -2,7 +2,6 @@ import { Helmet } from "react-helmet-async";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import PageTransition from "@/components/layout/PageTransition";
-import BubbleBackground from "@/components/effects/BubbleBackground";
 import { Folder, Github, ExternalLink, ChevronDown, ChevronUp, Zap, Clock, Users, Database } from "lucide-react";
 
 const projects = [
@@ -225,8 +224,6 @@ const ProjectsPage = () => {
         <title>Projects | Ayush Katiyar</title>
         <meta name="description" content="View projects by Ayush Katiyar - Employee HR Platform, Task Manager, E-Commerce Catalog. Built with MERN stack." />
       </Helmet>
-
-      <BubbleBackground />
 
       <section className="py-32 relative overflow-hidden">
         <div className="absolute inset-0 cyber-grid opacity-30" />

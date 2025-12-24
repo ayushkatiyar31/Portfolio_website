@@ -215,18 +215,6 @@ const HeroSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
               </div>
 
-              {/* Static floating badges - CSS animation instead of framer-motion */}
-              <div
-                className="absolute -right-4 top-1/4 px-3 py-2 rounded-lg glass-card text-xs font-medium animate-float"
-              >
-                <span className="text-primary">React</span>
-              </div>
-              <div
-                className="absolute -left-4 bottom-1/4 px-3 py-2 rounded-lg glass-card text-xs font-medium animate-float"
-                style={{ animationDelay: "1.5s" }}
-              >
-                <span className="text-accent">Node.js</span>
-              </div>
             </div>
           </motion.div>
         </div>

@@ -70,38 +70,20 @@ const Navbar = () => {
         </NavLink>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-1 p-1 rounded-full glass-card">
+        <div className="hidden lg:flex items-center gap-1 p-1.5 rounded-2xl bg-secondary/80 border border-border/50">
           {navLinks.map((link, index) => (
             <NavLink
               key={link.path}
               to={link.path}
               className={({ isActive }) =>
-                `relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                `relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
                   isActive
-                    ? "text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-primary-foreground bg-primary shadow-glow"
+                    : "text-foreground hover:text-primary hover:bg-secondary"
                 }`
               }
             >
-              {({ isActive }) => (
-                <>
-                  {isActive && (
-                    <motion.div
-                      layoutId="navbar-pill"
-                      className="absolute inset-0 rounded-full shadow-glow"
-                      style={{ background: "var(--gradient-primary)", zIndex: -1 }}
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
-                    />
-                  )}
-                  <motion.span
-                    initial={{ opacity: 0, y: -8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                  >
-                    {link.name}
-                  </motion.span>
-                </>
-              )}
+              {link.name}
             </NavLink>
           ))}
         </div>

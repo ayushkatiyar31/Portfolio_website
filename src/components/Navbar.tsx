@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Zap } from "lucide-react";
 
 const navLinks = [
   { name: "About", href: "#about" },
@@ -34,11 +34,12 @@ const Navbar = () => {
       <nav className="container mx-auto px-6 flex items-center justify-between">
         <motion.a
           href="#"
-          className="text-2xl font-bold gradient-text"
+          className="flex items-center gap-2 text-2xl font-bold font-display"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          AK
+          <Zap className="w-6 h-6 text-primary" />
+          <span className="gradient-text">AK</span>
         </motion.a>
 
         {/* Desktop Navigation */}
@@ -52,10 +53,12 @@ const Navbar = () => {
             >
               <a
                 href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative group"
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors relative group font-mono"
               >
+                <span className="text-primary/50">{"<"}</span>
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
+                <span className="text-primary/50">{"/>"}</span>
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
               </a>
             </motion.li>
           ))}
@@ -66,7 +69,7 @@ const Navbar = () => {
           >
             <a
               href="#contact"
-              className="px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 transition-opacity"
+              className="px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 transition-opacity neon-glow"
             >
               Let's Talk
             </a>
@@ -76,7 +79,7 @@ const Navbar = () => {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden p-2 text-foreground"
+          className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
           aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -90,7 +93,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass-card mt-2 mx-4 rounded-2xl overflow-hidden"
+            className="md:hidden glass-card mt-2 mx-4 rounded-xl overflow-hidden border border-primary/20"
           >
             <ul className="p-6 space-y-4">
               {navLinks.map((link) => (
@@ -98,7 +101,7 @@ const Navbar = () => {
                   <a
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-lg font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    className="block text-lg font-medium text-muted-foreground hover:text-primary transition-colors font-mono"
                   >
                     {link.name}
                   </a>
@@ -108,7 +111,7 @@ const Navbar = () => {
                 <a
                   href="#contact"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block w-full text-center px-5 py-3 rounded-full bg-primary text-primary-foreground font-semibold"
+                  className="block w-full text-center px-5 py-3 rounded-lg bg-primary text-primary-foreground font-semibold neon-glow"
                 >
                   Let's Talk
                 </a>

@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Space Grotesk', 'system-ui', 'sans-serif'],
-        display: ['Orbitron', 'sans-serif'],
+        sans: ['Outfit', 'system-ui', 'sans-serif'],
+        display: ['Sora', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       colors: {
@@ -52,11 +52,12 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        neon: {
-          blue: "hsl(var(--neon-blue))",
-          purple: "hsl(var(--neon-purple))",
-          cyan: "hsl(var(--neon-cyan))",
-          pink: "hsl(var(--neon-pink))",
+        warm: {
+          orange: "hsl(var(--warm-orange))",
+          coral: "hsl(var(--warm-coral))",
+          rose: "hsl(var(--warm-rose))",
+          amber: "hsl(var(--warm-amber))",
+          gold: "hsl(var(--warm-gold))",
         },
       },
       borderRadius: {
@@ -94,12 +95,20 @@ export default {
           "100%": { opacity: "1", transform: "scale(1)" },
         },
         "glow-pulse": {
-          "0%, 100%": { boxShadow: "0 0 20px hsl(200 100% 50% / 0.5)" },
-          "50%": { boxShadow: "0 0 40px hsl(200 100% 50% / 0.8), 0 0 60px hsl(200 100% 50% / 0.4)" },
+          "0%, 100%": { boxShadow: "0 0 20px hsl(24 95% 60% / 0.4)" },
+          "50%": { boxShadow: "0 0 40px hsl(24 95% 60% / 0.6), 0 0 60px hsl(24 95% 60% / 0.3)" },
         },
         "border-glow": {
-          "0%, 100%": { borderColor: "hsl(200 100% 50% / 0.5)" },
-          "50%": { borderColor: "hsl(200 100% 50% / 1)" },
+          "0%, 100%": { borderColor: "hsl(24 95% 60% / 0.5)" },
+          "50%": { borderColor: "hsl(24 95% 60% / 1)" },
+        },
+        "shimmer": {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
         },
       },
       animation: {
@@ -112,6 +121,8 @@ export default {
         "scale-in": "scale-in 0.4s ease-out forwards",
         "glow-pulse": "glow-pulse 2s ease-in-out infinite",
         "border-glow": "border-glow 2s ease-in-out infinite",
+        "shimmer": "shimmer 2s linear infinite",
+        "float": "float 3s ease-in-out infinite",
       },
     },
   },

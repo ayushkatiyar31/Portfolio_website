@@ -1,9 +1,7 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Phone, Download, Code, Rocket } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Suspense, lazy } from "react";
-
-const SolarSystem = lazy(() => import("../three/SolarSystem"));
+import BubbleBackground from "../effects/BubbleBackground";
 
 const letterVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -48,10 +46,8 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Solar System Background */}
-      <Suspense fallback={<div className="absolute inset-0 cyber-grid opacity-30" />}>
-        <SolarSystem />
-      </Suspense>
+      {/* Bubble Background */}
+      <BubbleBackground />
       
       {/* Overlay for readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />

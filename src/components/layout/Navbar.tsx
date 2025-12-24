@@ -54,13 +54,13 @@ const Navbar = () => {
         </NavLink>
 
         {/* Desktop Navigation */}
-        <ul className="hidden lg:flex items-center gap-1">
+        <ul className="hidden md:flex items-center gap-0.5">
           {navLinks.map((link) => (
             <li key={link.path}>
               <NavLink
                 to={link.path}
                 className={({ isActive }) =>
-                  `relative px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                  `relative px-3 py-2 rounded-lg text-xs lg:text-sm font-medium transition-all ${
                     isActive
                       ? "text-primary"
                       : "text-muted-foreground hover:text-foreground"
@@ -88,7 +88,7 @@ const Navbar = () => {
         {/* Mobile Menu Button */}
         <motion.button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="lg:hidden p-2 rounded-lg text-foreground hover:bg-secondary transition-colors"
+          className="md:hidden p-2 rounded-lg text-foreground hover:bg-secondary transition-colors"
           whileTap={{ scale: 0.95 }}
           aria-label="Toggle menu"
         >
@@ -103,7 +103,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden glass-card mt-2 mx-4 rounded-xl overflow-hidden border border-primary/20"
+            className="md:hidden glass-card mt-2 mx-4 rounded-xl overflow-hidden border border-primary/20"
           >
             <ul className="p-4 space-y-1">
               {navLinks.map((link) => (

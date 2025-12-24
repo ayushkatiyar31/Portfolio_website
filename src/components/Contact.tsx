@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Mail, MapPin, Send, Loader2, CheckCircle, Github, Linkedin, Twitter } from "lucide-react";
+import { Mail, MapPin, Send, Loader2, CheckCircle, Github, Linkedin, Twitter, MessageSquare } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
@@ -21,7 +21,6 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     setIsSubmitting(false);
@@ -43,9 +42,10 @@ const Contact = () => {
   return (
     <section id="contact" className="py-32 relative overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(38_92%_50%/0.08)_0%,transparent_50%)]" />
+      <div className="absolute inset-0 cyber-grid opacity-30" />
+      <div className="absolute left-1/2 bottom-0 w-[600px] h-[600px] bg-neon-blue/5 rounded-full blur-[120px] -translate-x-1/2" />
 
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 relative">
         <div className="max-w-5xl mx-auto">
           {/* Section Header */}
           <motion.div
@@ -55,11 +55,12 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <span className="inline-block px-4 py-1.5 rounded-full glass-card text-sm text-primary font-medium mb-4">
-              Get In Touch
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg glass-card text-sm text-primary font-mono mb-4">
+              <MessageSquare className="w-4 h-4" />
+              ./contact
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Let's Build Something <span className="gradient-text">Amazing</span>
+            <h2 className="text-4xl md:text-5xl font-bold font-display mb-6">
+              LET'S BUILD SOMETHING <span className="gradient-text">AMAZING</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Have a project in mind or want to collaborate? I'd love to hear from you.
@@ -75,16 +76,16 @@ const Contact = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-2 space-y-8"
             >
-              <div className="glass-card p-6 rounded-2xl">
-                <h3 className="text-xl font-semibold mb-6">Contact Information</h3>
+              <div className="glass-card p-6 rounded-xl border-l-2 border-l-primary">
+                <h3 className="text-xl font-semibold font-display mb-6">CONTACT INFO</h3>
                 
                 <div className="space-y-5">
                   <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-xl bg-primary/10">
+                    <div className="p-3 rounded-lg bg-primary/10 border border-primary/30">
                       <Mail className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <p className="text-sm text-muted-foreground">Email</p>
+                      <p className="text-sm text-muted-foreground font-mono">Email</p>
                       <a href="mailto:ayush@example.com" className="font-medium hover:text-primary transition-colors">
                         ayush@example.com
                       </a>
@@ -92,19 +93,19 @@ const Contact = () => {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-xl bg-primary/10">
+                    <div className="p-3 rounded-lg bg-primary/10 border border-primary/30">
                       <MapPin className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <p className="text-sm text-muted-foreground">Location</p>
+                      <p className="text-sm text-muted-foreground font-mono">Location</p>
                       <p className="font-medium">India</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="glass-card p-6 rounded-2xl">
-                <h3 className="text-lg font-semibold mb-4">Follow Me</h3>
+              <div className="glass-card p-6 rounded-xl">
+                <h3 className="text-lg font-semibold font-display mb-4">FOLLOW ME</h3>
                 <div className="flex gap-3">
                   {[
                     { icon: Github, href: "https://github.com", label: "GitHub" },
@@ -116,8 +117,8 @@ const Contact = () => {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 rounded-xl bg-secondary text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
-                      whileHover={{ scale: 1.05 }}
+                      className="p-3 rounded-lg bg-secondary border border-primary/20 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
+                      whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
                       aria-label={social.label}
                     >
@@ -135,11 +136,11 @@ const Contact = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="lg:col-span-3"
             >
-              <form onSubmit={handleSubmit} className="glass-card p-8 rounded-3xl space-y-6">
+              <form onSubmit={handleSubmit} className="glass-card p-8 rounded-xl space-y-6 border-t-2 border-t-primary">
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-2">
-                      Name
+                    <label htmlFor="name" className="block text-sm font-mono font-medium mb-2 text-muted-foreground">
+                      {"<name>"}
                     </label>
                     <input
                       type="text"
@@ -148,13 +149,13 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"
+                      className="w-full px-4 py-3 rounded-lg bg-secondary border border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors font-mono"
                       placeholder="Your name"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">
-                      Email
+                    <label htmlFor="email" className="block text-sm font-mono font-medium mb-2 text-muted-foreground">
+                      {"<email>"}
                     </label>
                     <input
                       type="email"
@@ -163,15 +164,15 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"
+                      className="w-full px-4 py-3 rounded-lg bg-secondary border border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors font-mono"
                       placeholder="your@email.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                    Subject
+                  <label htmlFor="subject" className="block text-sm font-mono font-medium mb-2 text-muted-foreground">
+                    {"<subject>"}
                   </label>
                   <input
                     type="text"
@@ -180,14 +181,14 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"
+                    className="w-full px-4 py-3 rounded-lg bg-secondary border border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors font-mono"
                     placeholder="What's this about?"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
-                    Message
+                  <label htmlFor="message" className="block text-sm font-mono font-medium mb-2 text-muted-foreground">
+                    {"<message>"}
                   </label>
                   <textarea
                     id="message"
@@ -196,7 +197,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors resize-none"
+                    className="w-full px-4 py-3 rounded-lg bg-secondary border border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors resize-none font-mono"
                     placeholder="Tell me about your project..."
                   />
                 </div>
@@ -204,24 +205,24 @@ const Contact = () => {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting || isSubmitted}
-                  className="w-full py-4 rounded-xl bg-primary text-primary-foreground font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-70"
+                  className="w-full py-4 rounded-lg bg-primary text-primary-foreground font-semibold font-display flex items-center justify-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-70 neon-glow"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   {isSubmitting ? (
                     <>
                       <Loader2 className="w-5 h-5 animate-spin" />
-                      Sending...
+                      SENDING...
                     </>
                   ) : isSubmitted ? (
                     <>
                       <CheckCircle className="w-5 h-5" />
-                      Message Sent!
+                      MESSAGE SENT!
                     </>
                   ) : (
                     <>
                       <Send className="w-5 h-5" />
-                      Send Message
+                      SEND MESSAGE
                     </>
                   )}
                 </motion.button>

@@ -1,9 +1,11 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import { Code, Server, Wrench, Database } from "lucide-react";
 
 const skillCategories = [
   {
     name: "Frontend",
+    icon: Code,
     skills: [
       { name: "React.js", level: 90 },
       { name: "TypeScript", level: 85 },
@@ -14,6 +16,7 @@ const skillCategories = [
   },
   {
     name: "Backend",
+    icon: Server,
     skills: [
       { name: "Node.js", level: 85 },
       { name: "Express.js", level: 85 },
@@ -23,7 +26,8 @@ const skillCategories = [
     ],
   },
   {
-    name: "Tools & Others",
+    name: "Tools",
+    icon: Wrench,
     skills: [
       { name: "Git & GitHub", level: 90 },
       { name: "Docker", level: 70 },
@@ -42,9 +46,10 @@ const Skills = () => {
   return (
     <section id="skills" className="py-32 relative overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,hsl(38_92%_50%/0.05)_0%,transparent_50%)]" />
+      <div className="absolute inset-0 cyber-grid opacity-30" />
+      <div className="absolute right-0 top-1/2 w-96 h-96 bg-neon-purple/5 rounded-full blur-[100px]" />
 
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 relative">
         <div className="max-w-5xl mx-auto">
           {/* Section Header */}
           <motion.div
@@ -54,11 +59,12 @@ const Skills = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <span className="inline-block px-4 py-1.5 rounded-full glass-card text-sm text-primary font-medium mb-4">
-              Skills & Expertise
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg glass-card text-sm text-primary font-mono mb-4">
+              <Database className="w-4 h-4" />
+              ./skills
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              My Technical <span className="gradient-text">Arsenal</span>
+            <h2 className="text-4xl md:text-5xl font-bold font-display mb-6">
+              TECHNICAL <span className="gradient-text">ARSENAL</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               A comprehensive toolkit built over years of learning and building real-world projects.
@@ -76,12 +82,13 @@ const Skills = () => {
               <button
                 key={category.name}
                 onClick={() => setActiveCategory(index)}
-                className={`px-6 py-3 rounded-full font-medium transition-all ${
+                className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium font-mono transition-all ${
                   activeCategory === index
-                    ? "bg-primary text-primary-foreground"
-                    : "glass-card text-muted-foreground hover:text-foreground"
+                    ? "bg-primary text-primary-foreground neon-glow"
+                    : "glass-card text-muted-foreground hover:text-foreground hover:border-primary/50"
                 }`}
               >
+                <category.icon className="w-4 h-4" />
                 {category.name}
               </button>
             ))}
@@ -93,7 +100,7 @@ const Skills = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="glass-card p-8 rounded-3xl"
+            className="glass-card p-8 rounded-xl border-t-2 border-t-primary"
           >
             <div className="grid gap-6">
               {skillCategories[activeCategory].skills.map((skill, index) => (
@@ -105,10 +112,10 @@ const Skills = () => {
                   className="group"
                 >
                   <div className="flex items-center justify-between mb-2">
-                    <span className="font-medium group-hover:text-primary transition-colors">
+                    <span className="font-medium font-mono group-hover:text-primary transition-colors">
                       {skill.name}
                     </span>
-                    <span className="text-sm text-muted-foreground font-mono">
+                    <span className="text-sm text-primary font-mono">
                       {skill.level}%
                     </span>
                   </div>
@@ -117,9 +124,10 @@ const Skills = () => {
                       initial={{ width: 0 }}
                       animate={{ width: `${skill.level}%` }}
                       transition={{ duration: 1, delay: index * 0.1, ease: "easeOut" }}
-                      className="h-full rounded-full"
+                      className="h-full rounded-full relative overflow-hidden"
                       style={{
-                        background: "linear-gradient(90deg, hsl(38 92% 50%), hsl(28 90% 55%))",
+                        background: "linear-gradient(90deg, hsl(200 100% 50%), hsl(180 100% 50%))",
+                        boxShadow: "0 0 10px hsl(200 100% 50% / 0.5)",
                       }}
                     />
                   </div>
@@ -128,14 +136,14 @@ const Skills = () => {
             </div>
           </motion.div>
 
-          {/* Tech Icons Grid */}
+          {/* Tech Tags */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-16 flex flex-wrap justify-center gap-4"
+            className="mt-16 flex flex-wrap justify-center gap-3"
           >
-            {["React", "Node.js", "TypeScript", "MongoDB", "Tailwind", "Git", "Docker", "AWS"].map(
+            {["React", "Node.js", "TypeScript", "MongoDB", "Tailwind", "Git", "Docker", "AWS", "PostgreSQL", "Next.js"].map(
               (tech, index) => (
                 <motion.div
                   key={tech}
@@ -143,9 +151,9 @@ const Skills = () => {
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.3, delay: 0.5 + index * 0.05 }}
                   whileHover={{ scale: 1.1, y: -5 }}
-                  className="px-5 py-2.5 rounded-full glass-card text-sm font-medium text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all cursor-default"
+                  className="px-4 py-2 rounded-lg glass-card text-sm font-mono text-muted-foreground hover:text-primary hover:border-primary/50 transition-all cursor-default"
                 >
-                  {tech}
+                  {`<${tech}/>`}
                 </motion.div>
               )
             )}

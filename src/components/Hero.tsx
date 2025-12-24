@@ -1,35 +1,36 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail, FileText } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, FileText, Terminal } from "lucide-react";
 
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(38_92%_50%/0.08)_0%,transparent_50%)]" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse-slow" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: "2s" }} />
+      {/* Cyber Grid Background */}
+      <div className="absolute inset-0 cyber-grid" />
       
-      {/* Grid Pattern */}
-      <div 
-        className="absolute inset-0 opacity-[0.02]"
-        style={{
-          backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px),
-                           linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
-        }}
-      />
+      {/* Glowing orbs */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neon-blue/10 rounded-full blur-[100px] animate-pulse-slow" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neon-purple/10 rounded-full blur-[100px] animate-pulse-slow" style={{ animationDelay: "2s" }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]" />
+
+      {/* Scanline effect */}
+      <div className="absolute inset-0 scanline opacity-50" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Status Badge */}
+          {/* Terminal-style greeting */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg glass-card mb-8 font-mono text-sm"
           >
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-sm text-muted-foreground">Available for opportunities</span>
+            <Terminal className="w-4 h-4 text-primary" />
+            <span className="text-primary">~/</span>
+            <span className="text-muted-foreground">status:</span>
+            <span className="text-green-400 flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              available for hire
+            </span>
           </motion.div>
 
           {/* Main Heading */}
@@ -39,28 +40,31 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6"
           >
-            <span className="block">Hi, I'm</span>
-            <span className="gradient-text">Ayush Katiyar</span>
+            <span className="block text-foreground font-display">HI, I'M</span>
+            <span className="gradient-text font-display">AYUSH KATIYAR</span>
           </motion.h1>
 
-          {/* Subtitle */}
-          <motion.p
+          {/* Subtitle with typing effect style */}
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl md:text-2xl text-muted-foreground mb-4 font-light"
+            className="mb-4"
           >
-            Full-Stack Developer & B.Tech CS Student
-          </motion.p>
+            <p className="text-xl md:text-2xl text-primary font-display tracking-wider">
+              FULL-STACK DEVELOPER
+            </p>
+          </motion.div>
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10"
+            className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
           >
-            I craft exceptional digital experiences with modern technologies.
-            Passionate about building products that make a difference.
+            B.Tech CS student crafting{" "}
+            <span className="text-primary">high-performance</span> web applications 
+            with cutting-edge technologies. Building the future, one line of code at a time.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -70,20 +74,24 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
           >
-            <a
+            <motion.a
               href="#projects"
-              className="group px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-all flex items-center gap-2"
+              className="group px-8 py-4 rounded-lg bg-primary text-primary-foreground font-semibold transition-all flex items-center gap-2 neon-glow hover:scale-105"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               View My Work
               <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="#contact"
-              className="px-8 py-4 rounded-full border border-border hover:border-primary/50 text-foreground font-semibold transition-colors flex items-center gap-2"
+              className="px-8 py-4 rounded-lg border border-primary/50 text-foreground font-semibold transition-all flex items-center gap-2 hover:bg-primary/10 hover:border-primary"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               <FileText className="w-4 h-4" />
               Download Resume
-            </a>
+            </motion.a>
           </motion.div>
 
           {/* Social Links */}
@@ -91,7 +99,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex items-center justify-center gap-6"
+            className="flex items-center justify-center gap-4"
           >
             {[
               { icon: Github, href: "https://github.com", label: "GitHub" },
@@ -103,8 +111,8 @@ const Hero = () => {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full glass-card text-muted-foreground hover:text-primary transition-colors"
-                whileHover={{ scale: 1.1, y: -2 }}
+                className="p-3 rounded-lg glass-card text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
+                whileHover={{ scale: 1.1, y: -4 }}
                 whileTap={{ scale: 0.95 }}
                 aria-label={social.label}
               >
@@ -125,11 +133,17 @@ const Hero = () => {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2"
+          className="w-6 h-10 rounded-full border-2 border-primary/50 flex items-start justify-center p-2"
         >
           <motion.div className="w-1 h-2 rounded-full bg-primary" />
         </motion.div>
       </motion.div>
+
+      {/* Corner decorations */}
+      <div className="absolute top-20 left-8 w-20 h-20 border-l-2 border-t-2 border-primary/30" />
+      <div className="absolute top-20 right-8 w-20 h-20 border-r-2 border-t-2 border-primary/30" />
+      <div className="absolute bottom-20 left-8 w-20 h-20 border-l-2 border-b-2 border-primary/30" />
+      <div className="absolute bottom-20 right-8 w-20 h-20 border-r-2 border-b-2 border-primary/30" />
     </section>
   );
 };

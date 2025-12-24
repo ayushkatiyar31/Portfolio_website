@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NavLink, useLocation } from "react-router-dom";
-import { Menu, X, Rocket, Sparkles } from "lucide-react";
+import { Menu, X, Sparkles } from "lucide-react";
+import ThemeToggle from "../ui/ThemeToggle";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -34,46 +35,48 @@ const Navbar = () => {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
-          ? "py-2 bg-background/80 backdrop-blur-xl border-b border-primary/10 shadow-lg shadow-primary/5" 
-          : "py-4"
+          ? "py-3 glass-card border-b border-border/50" 
+          : "py-5 bg-transparent"
       }`}
     >
       <nav className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         {/* Logo */}
-        <NavLink to="/" className="flex items-center gap-2 group">
+        <NavLink to="/" className="flex items-center gap-3 group">
           <motion.div
-            whileHover={{ rotate: 360, scale: 1.1 }}
-            transition={{ duration: 0.5 }}
-            className="relative p-2 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 border border-primary/30"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="relative"
           >
-            <Rocket className="w-5 h-5 text-primary" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-glow">
+              <span className="text-lg font-bold text-primary-foreground font-display">A</span>
+            </div>
             <motion.div
-              className="absolute inset-0 rounded-xl bg-primary/20"
-              animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
-              transition={{ duration: 2, repeat: Infinity }}
+              className="absolute inset-0 rounded-xl bg-primary/30 blur-md -z-10"
+              animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+              transition={{ duration: 3, repeat: Infinity }}
             />
           </motion.div>
-          <div className="flex flex-col">
-            <span className="text-lg font-bold font-display gradient-text leading-tight">
-              AYUSH
+          <div className="hidden sm:flex flex-col">
+            <span className="text-base font-bold font-display text-foreground leading-tight">
+              Ayush Katiyar
             </span>
-            <span className="text-[10px] text-muted-foreground font-mono tracking-widest">
-              DEVELOPER
+            <span className="text-xs text-muted-foreground font-medium tracking-wide">
+              Full-Stack Developer
             </span>
           </div>
         </NavLink>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-1 p-1.5 rounded-full glass-card">
+        <div className="hidden lg:flex items-center gap-1 p-1 rounded-full glass-card">
           {navLinks.map((link, index) => (
             <NavLink
               key={link.path}
               to={link.path}
               className={({ isActive }) =>
-                `relative px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium transition-all duration-300 ${
+                `relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   isActive
                     ? "text-primary-foreground"
                     : "text-muted-foreground hover:text-foreground"
@@ -85,13 +88,13 @@ const Navbar = () => {
                   {isActive && (
                     <motion.div
                       layoutId="navbar-pill"
-                      className="absolute inset-0 bg-primary rounded-full neon-glow"
-                      style={{ zIndex: -1 }}
-                      transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
+                      className="absolute inset-0 rounded-full shadow-glow"
+                      style={{ background: "var(--gradient-primary)", zIndex: -1 }}
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                     />
                   )}
                   <motion.span
-                    initial={{ opacity: 0, y: -10 }}
+                    initial={{ opacity: 0, y: -8 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.05 }}
                   >
@@ -103,36 +106,42 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* CTA Button - Desktop */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.5 }}
-          className="hidden md:block"
-        >
-          <NavLink
-            to="/contact"
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:scale-105 transition-transform neon-glow"
-          >
-            <Sparkles className="w-4 h-4" />
-            <span>Hire Me</span>
-          </NavLink>
-        </motion.div>
-
-        {/* Mobile Menu Button */}
-        <motion.button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden p-2 rounded-xl glass-card text-foreground"
-          whileTap={{ scale: 0.95 }}
-          aria-label="Toggle menu"
-        >
+        {/* Right Section */}
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          
+          {/* CTA Button - Desktop */}
           <motion.div
-            animate={{ rotate: isMobileMenuOpen ? 180 : 0 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.5 }}
+            className="hidden md:block"
           >
-            {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            <NavLink
+              to="/contact"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-full btn-premium text-primary-foreground text-sm font-semibold"
+            >
+              <Sparkles className="w-4 h-4" />
+              <span>Hire Me</span>
+            </NavLink>
           </motion.div>
-        </motion.button>
+
+          {/* Mobile Menu Button */}
+          <motion.button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden p-2.5 rounded-xl glass-card text-foreground"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            aria-label="Toggle menu"
+          >
+            <motion.div
+              animate={{ rotate: isMobileMenuOpen ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </motion.div>
+          </motion.button>
+        </div>
       </nav>
 
       {/* Mobile Navigation */}
@@ -143,7 +152,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden absolute top-full left-4 right-4 mt-2 glass-card rounded-2xl overflow-hidden border border-primary/20 shadow-xl"
+            className="lg:hidden absolute top-full left-4 right-4 mt-2 glass-card rounded-2xl overflow-hidden border border-border/50"
           >
             <ul className="p-3 space-y-1">
               {navLinks.map((link, index) => (
@@ -158,7 +167,7 @@ const Navbar = () => {
                     className={({ isActive }) =>
                       `flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium transition-all ${
                         isActive
-                          ? "bg-primary text-primary-foreground"
+                          ? "bg-primary text-primary-foreground shadow-glow"
                           : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                       }`
                     }
@@ -175,7 +184,7 @@ const Navbar = () => {
               >
                 <NavLink
                   to="/contact"
-                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-primary text-primary-foreground font-semibold"
+                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl btn-premium text-primary-foreground font-semibold"
                 >
                   <Sparkles className="w-4 h-4" />
                   Hire Me

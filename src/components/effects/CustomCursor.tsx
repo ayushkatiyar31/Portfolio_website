@@ -5,17 +5,10 @@ const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
-  const [trail, setTrail] = useState<{ x: number; y: number; id: number }[]>([]);
 
   useEffect(() => {
-    let trailId = 0;
-    
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
-      
-      // Add trail particle
-      trailId++;
-      setTrail(prev => [...prev.slice(-8), { x: e.clientX, y: e.clientY, id: trailId }]);
     };
 
     const handleMouseOver = (e: MouseEvent) => {
@@ -52,28 +45,9 @@ const CustomCursor = () => {
 
   return (
     <>
-      {/* Trail particles */}
-      {trail.map((point, index) => (
-        <motion.div
-          key={point.id}
-          className="fixed pointer-events-none z-[9998] rounded-full"
-          style={{
-            left: point.x,
-            top: point.y,
-            width: 6 + index * 0.5,
-            height: 6 + index * 0.5,
-            background: `hsl(24 95% 60% / ${0.1 + index * 0.05})`,
-            transform: "translate(-50%, -50%)",
-          }}
-          initial={{ opacity: 0.6, scale: 1 }}
-          animate={{ opacity: 0, scale: 0.3 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-        />
-      ))}
-
       {/* Main cursor ring */}
       <motion.div
-        className="fixed pointer-events-none z-[9999] rounded-full border-2 border-primary"
+        className="fixed pointer-events-none z-[9999] rounded-full border border-primary/50"
         style={{
           left: mousePosition.x,
           top: mousePosition.y,
@@ -81,58 +55,63 @@ const CustomCursor = () => {
         animate={{
           x: "-50%",
           y: "-50%",
-          width: isHovering ? 50 : isClicking ? 30 : 40,
-          height: isHovering ? 50 : isClicking ? 30 : 40,
-          borderColor: isHovering ? "hsl(340 85% 65%)" : "hsl(24 95% 60%)",
-          backgroundColor: isClicking ? "hsl(24 95% 60% / 0.2)" : "transparent",
+          width: isHovering ? 48 : isClicking ? 24 : 32,
+          height: isHovering ? 48 : isClicking ? 24 : 32,
+          borderColor: isHovering 
+            ? "hsl(var(--accent) / 0.6)" 
+            : "hsl(var(--primary) / 0.5)",
+          backgroundColor: isClicking 
+            ? "hsl(var(--primary) / 0.15)" 
+            : "transparent",
         }}
         transition={{
           type: "spring",
-          stiffness: 500,
-          damping: 28,
+          stiffness: 400,
+          damping: 25,
           mass: 0.5,
         }}
       />
 
       {/* Center dot */}
       <motion.div
-        className="fixed pointer-events-none z-[9999] rounded-full bg-primary"
+        className="fixed pointer-events-none z-[9999] rounded-full"
         style={{
           left: mousePosition.x,
           top: mousePosition.y,
+          background: "var(--gradient-primary)",
         }}
         animate={{
           x: "-50%",
           y: "-50%",
-          width: isHovering ? 8 : 6,
-          height: isHovering ? 8 : 6,
-          scale: isClicking ? 1.5 : 1,
+          width: isHovering ? 6 : 4,
+          height: isHovering ? 6 : 4,
+          scale: isClicking ? 1.8 : 1,
         }}
         transition={{
           type: "spring",
-          stiffness: 800,
-          damping: 35,
+          stiffness: 600,
+          damping: 30,
         }}
       />
 
-      {/* Glow effect */}
+      {/* Subtle glow */}
       <motion.div
         className="fixed pointer-events-none z-[9997] rounded-full"
         style={{
           left: mousePosition.x,
           top: mousePosition.y,
-          background: "radial-gradient(circle, hsl(24 95% 60% / 0.15) 0%, transparent 70%)",
+          background: "radial-gradient(circle, hsl(var(--primary) / 0.08) 0%, transparent 70%)",
         }}
         animate={{
           x: "-50%",
           y: "-50%",
-          width: isHovering ? 100 : 80,
-          height: isHovering ? 100 : 80,
+          width: isHovering ? 80 : 60,
+          height: isHovering ? 80 : 60,
         }}
         transition={{
           type: "spring",
-          stiffness: 300,
-          damping: 30,
+          stiffness: 250,
+          damping: 25,
         }}
       />
     </>

@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 
 const BubbleBackground = () => {
-  const bubbles = Array.from({ length: 15 }, (_, i) => ({
+  const bubbles = Array.from({ length: 25 }, (_, i) => ({
     id: i,
-    size: Math.random() * 100 + 50,
+    size: Math.random() * 20 + 8,
     left: Math.random() * 100,
     delay: Math.random() * 5,
-    duration: Math.random() * 10 + 15,
+    duration: Math.random() * 10 + 12,
   }));
 
   return (

@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Phone, Download, Code, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import BubbleBackground from "../effects/BubbleBackground";
 import profileImage from "@/assets/profile.jpeg";
 
 import { useState, useEffect } from "react";
@@ -79,9 +78,6 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Bubble Background */}
-      <BubbleBackground />
-      
       {/* Gradient overlay for readability */}
       
       {/* Gradient overlay for readability */}

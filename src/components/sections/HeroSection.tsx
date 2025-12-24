@@ -200,7 +200,7 @@ const HeroSection = () => {
                   src={profileImage} 
                   alt="Ayush Katiyar" 
                   className="w-full h-full object-cover scale-125"
-                  style={{ objectPosition: "center 20%" }}
+                  style={{ objectPosition: "center 5%" }}
                 />
                 {/* Subtle overlay for depth */}
                 <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />

@@ -2,7 +2,8 @@ import { Helmet } from "react-helmet-async";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import PageTransition from "@/components/layout/PageTransition";
-import { Briefcase, Calendar, Users, Zap, TrendingUp } from "lucide-react";
+import BubbleBackground from "@/components/effects/BubbleBackground";
+import { Briefcase, Calendar, Users, Zap, TrendingUp, Code2 } from "lucide-react";
 
 const experiences = [
   {
@@ -54,6 +55,8 @@ const ExperiencePage = () => {
         <title>Experience | Ayush Katiyar</title>
         <meta name="description" content="Professional experience of Ayush Katiyar - Frontend Developer at DSDL Club, mentoring students and building web applications." />
       </Helmet>
+
+      <BubbleBackground />
 
       <section className="py-32 relative overflow-hidden">
         <div className="absolute inset-0 cyber-grid opacity-30" />

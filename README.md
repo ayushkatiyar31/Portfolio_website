@@ -3,8 +3,7 @@
 A modern, responsive, and animated **full-stack portfolio website** built to showcase my skills, projects, and experience as a developer.  
 Designed with clean UI, smooth animations, and scalability in mind.
 
-🔗 **Live Demo**: (Add your deployed URL here)  
-📂 **GitHub Repository**: (Add repo link)
+🔗 **Live Demo**: https://portfolio-website-six-iota-25.vercel.app/ 
 
 ---
 

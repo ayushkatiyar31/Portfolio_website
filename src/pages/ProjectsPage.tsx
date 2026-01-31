@@ -10,7 +10,7 @@ const projects = [
     id: 1,
     title: "Employee HR Platform",
     subtitle: "MERN Stack, Tailwind, JWT",
-    duration: "Jan 2025 – Feb 2025",
+    duration: "Jan 2025 – Feb 202",
     description: "A scalable full-stack HR management platform for efficient employee data handling.",
     problem: "Organizations struggle with managing employee data, leave tracking, and access control across different roles.",
     features: [

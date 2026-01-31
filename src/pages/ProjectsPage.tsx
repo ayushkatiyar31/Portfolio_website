@@ -10,7 +10,7 @@ const projects = [
     id: 1,
     title: "Employee HR Platform",
     subtitle: "MERN Stack, Tailwind, JWT",
-    duration: "Jan 2025 – Feb 202",
+    duration: "Jan 2025 – Feb 2025",
     description: "A scalable full-stack HR management platform for efficient employee data handling.",
     problem: "Organizations struggle with managing employee data, leave tracking, and access control across different roles.",
     features: [
@@ -34,7 +34,7 @@ const projects = [
     id: 2,
     title: "Task Manager Web App",
     subtitle: "MERN, Redux, Tailwind",
-    duration: "Jan 2025 – Feb 2025",
+    duration: "Nov 2024 – Dec 2024",
     description: "Full-stack task management app with secure authentication and real-time state management.",
     problem: "Users need a reliable way to organize tasks with categories, status tracking, and seamless sync across devices.",
     features: [
@@ -58,7 +58,7 @@ const projects = [
     id: 3,
     title: "E-Commerce Products Catalog",
     subtitle: "MERN, Bootstrap, CSV Parser",
-    duration: "Sep 2025 – Oct 2025",
+    duration: " April 2025 – May 2025",
     description: "High-performance e-commerce catalog with 29,000+ products and advanced filtering.",
     problem: "E-commerce platforms need efficient ways to handle large product datasets with fast search and filtering.",
     features: [

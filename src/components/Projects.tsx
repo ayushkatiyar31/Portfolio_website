@@ -10,7 +10,7 @@ const projects = [
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
     tags: ["React", "Node.js", "MongoDB", "Stripe"],
     github: "https://github.com",
-    live: "https://example.com",
+    live: "https://think41-project.vercel.app/",
     featured: true,
   },
   {
